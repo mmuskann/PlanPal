@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { supabase } from '..//client'
+import { supabase } from '../client'
 
 function EditPost() {
     
@@ -12,7 +12,7 @@ function EditPost() {
         image_url: ""
     })
 
-    useEffect( () => {fetchPost}, [])
+    useEffect( () => {fetchPost()}, [])
 
     const fetchPost = async () => {
         const {data, error} = await supabase
@@ -47,14 +47,14 @@ function EditPost() {
         event.preventDefault()
 
         const {error} = await supabase
-        .from('posts'
-            .update({
-                title: post.title,
-                content: post.content,
-                image_url: post.image_url
-            })
-            .eq('id', id)
-        )
+        .from('posts')
+        .update({
+            title: post.title,
+            content: post.content,
+            image_url: post.image_url
+        })
+        .eq('id', id)
+        
 
         if (error) {
             console.log(error)
