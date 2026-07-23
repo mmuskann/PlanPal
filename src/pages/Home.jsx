@@ -7,7 +7,7 @@ function Home() {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        setPosts(props.data)
+        fetchPosts()
     }, [])
 
     const fetchPosts = async () => {
